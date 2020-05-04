@@ -12,17 +12,19 @@
 		private var _length: int;
 		private var _passIndex: Boolean;
 		private var _args: Array;
-		public function AsyncLoop(loopFunction: Function, length: int, passIndex: Boolean = true, maxScriptTime:int = 16, args: Array = null, startIndex:int = 0) {
+		private var _startIndex:int;
+		public function AsyncLoop(loopFunction: Function, length: int, passIndex: Boolean = false, maxScriptTime:int = 16, args: Array = null, startIndex:int = 0) {
 			super();
 			_loopFunction = loopFunction;
 			_length = length;
 			_passIndex = passIndex;
 			_args = args;
+			_startIndex = startIndex;
 
 		}
 
 		public function start(): void {
-			_runLoop(_loopFunction, _length, 16, _passIndex, _args, startIndex);			
+			_runLoop(_loopFunction, _length, 16, _passIndex, _args, _startIndex);			
 		}
 				
 		public function _runLoop(loopFunction: Function, length: int, maxScriptTime: int, passIndex: Boolean = false, args: Array = null, lastIndex: int = 0) {
